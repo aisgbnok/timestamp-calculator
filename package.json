@@ -1,15 +1,28 @@
 {
   "name": "timestamp-calculator",
   "version": "1.0.0",
-  "description": "Simple timestamp calculator",
+  "description": "Simple timestamp calculator website",
+  "keywords": [
+    "time",
+    "timestamp",
+    "calculator",
+    "website"
+  ],
+  "author": "Anthony Swierkosz",
+  "homepage": "https://github.com/aisgbnok/timestamp-calculator#readme",
+  "bugs": {
+    "url": "https://github.com/aisgbnok/timestamp-calculator/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aisgbnok/timestamp-calculator.git"
+  },
+  "license": "ISC",
+  "private": true,
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config webpack.dev.js --open",
     "start host": "webpack-dev-server --config webpack.dev.js --host 0.0.0.0",
     "build": "webpack --config webpack.prod.js"
-  },
-  "keywords": [],
-  "author": "Anthony Swierkosz",
-  "license": "ISC",
-  "private": true
+  }
 }
