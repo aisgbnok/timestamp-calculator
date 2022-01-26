@@ -89,13 +89,26 @@ export class TimeUtility {
     return new Date(end.getTime() - start.getTime());
   }
 
-  static testDate() {
-    let newtime = new Date(this.currentTime.getFullYear(),
-        this.currentTime.getMonth(), this.currentTime.getDate(), 2, 0, 0, 2);
+  /**
+   * Adds the given time onto the baseDate.
+   * @param time Time/Date to add
+   * @param baseDate Time/Date to start with, uses unix epoch if none is given.
+   * @returns {Date} baseDate plus time
+   */
+  static add(time, baseDate = this.UNIX_EPOCH) {
+    // Parse
+    time = this.parse(time);
+    baseDate = this.parse(baseDate);
 
-    let diff = newtime.getTime() - this.currentTime.getTime();
+    // Validate
+    if (time.toString() === this.INVALID.toString()) {
+      return this.INVALID;
+    }
+    if (baseDate.toString() === this.INVALID.toString()) {
+      return this.INVALID;
+    }
 
-    console.log(new Date(diff).toTimeString())
+    return new Date(baseDate.getTime() + time.getTime());
   }
 
   static testAddTime() {
