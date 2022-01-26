@@ -19,8 +19,20 @@
     </section>
   </div>
 </header>
-<main class="mdc-top-app-bar--fixed-adjust">
-  App content
+<main class="main-wrapper mdc-top-app-bar--fixed-adjust" id="parent-wrapper">
+  <div class="main-wrapper main-wrapper--align-content main-wrapper__content">
+    <!-- Title Wrapper -->
+    <div class="main-wrapper main-wrapper--align-content" id="title-wrapper">
+      <h2 class="mdc-typography--headline2 title">Start adding Time</h2>
+    </div>
+    <!-- Calculation -->
+    <div class="main-wrapper" id="calculation-wrapper">
+      <button class="mdc-button mdc-button--unelevated mdc-button--filled" id="button">
+        <div class="mdc-button__ripple"></div>
+        <span class="mdc-button__label">Calculate</span>
+      </button>
+    </div>
+  </div>
 </main>
 </body>
 </html>

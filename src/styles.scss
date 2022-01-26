@@ -6,18 +6,29 @@
   $on-primary: #393000,
   $on-secondary: #133724,
   $on-surface: #e7e2d9,
-
 );
-
+$secondary-container: #4d472a;
+$on-secondary-container: #ede3bc;
 $outline: #969181;
 
 @use "@material/typography" with (
   $font-family: unquote("JetBrains Mono, Arial, Helvetica, sans-serif")
 );
 
+@use "@material/shape" with (
+  $small-component-radius: 36px,
+  $medium-component-radius: 12px,
+  $large-component-radius: 36px
+);
+
 @use "@material/icon-button/mdc-icon-button";
 @use "@material/top-app-bar";
 @use "@material/top-app-bar/mdc-top-app-bar";
+@use "@material/button";
+@use "@material/button/styles";
+
+@include theme.core-styles;
+@include typography.core-styles;
 
 body {
   height: 100%;
@@ -33,3 +44,38 @@ body {
   border-bottom: 1px solid $outline;
 }
 
+// Main Wrapper
+.main-wrapper {
+  display: flex;
+}
+
+#parent-wrapper {
+  justify-content: center;
+}
+
+.main-wrapper--align-content {
+  align-items: center;
+  flex-direction: column;
+}
+
+.main-wrapper__content {
+  flex: 1;
+  width: 100%;
+  max-width: 1536px;
+  padding-top: 48px;
+}
+
+.mdc-button {
+  @include button.height(40px);
+  @include button.shape-radius(100%);
+  text-transform: none;
+}
+
+.mdc-button:not(.mdc-button--icon-leading), .mdc-button:not(.mdc-button--icon-trailing) {
+  @include button.horizontal-padding(24px);
+}
+
+.mdc-button--filled-tonal {
+  @include button.filled-accessible($secondary-container);
+  @include button.ink-color($on-secondary-container);
+}
