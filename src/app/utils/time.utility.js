@@ -120,36 +120,4 @@ export class TimeUtility {
     return new Date(baseDate.getTime() + time.getTime());
   }
 
-  static testAddTime() {
-    let previous = new Date(this.now().getFullYear(),
-        this.now().getMonth(), this.now().getDate(), 0, 1, 1, 70);
-    let add = new Date(this.now().getFullYear(),
-        this.now().getMonth(), this.now().getDate(), 0, 1, 4, 3);
-
-    this.addTime(previous, add);
-
-    console.log(this.now());
-    setTimeout(() => {
-      console.log(this.now())
-    }, 4000);
-
-    this.difference("00:01:00.70")
-  }
-
-  static addTime(previous, add) {
-    const newtime = previous.getTime() + (add.getTime() - previous.getTime());
-
-    console.log(new Date(newtime).toTimeString());
-  }
-
-  static validateTime(string) {
-
-  }
-
-  static parseTime(string) {
-    let example = "00:01:00.70"
-
-    let mili = example.split(".")[0]
-  }
-
 }
