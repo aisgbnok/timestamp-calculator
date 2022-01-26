@@ -1,0 +1,35 @@
+@use "@material/theme" with (
+  $primary: #e3c600,
+  $secondary: #a8d0b5,
+  $background: #1d1b16,
+  $surface: #1d1b16,
+  $on-primary: #393000,
+  $on-secondary: #133724,
+  $on-surface: #e7e2d9,
+
+);
+
+$outline: #969181;
+
+@use "@material/typography" with (
+  $font-family: unquote("JetBrains Mono, Arial, Helvetica, sans-serif")
+);
+
+@use "@material/icon-button/mdc-icon-button";
+@use "@material/top-app-bar";
+@use "@material/top-app-bar/mdc-top-app-bar";
+
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  @include theme.property(background-color, background);
+  @include theme.property(color, on-surface);
+}
+
+// Top App Bar
+.mdc-top-app-bar {
+  @include top-app-bar.fill-color-accessible(background);
+  border-bottom: 1px solid $outline;
+}
+
