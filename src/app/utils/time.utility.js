@@ -8,7 +8,7 @@ export class TimeUtility {
    * @returns {Date} Representing the current date and time.
    */
   static now() {
-    return new Date(Date.now());
+    return new Date();
   }
 
   /**
@@ -28,39 +28,48 @@ export class TimeUtility {
       return time;
     }
 
-    // See if time cam be a Date
+    //FIXME handle the period issue
+    // Date(".70") is 18000000ms
+    // ("0.70") is 0ms
+
+    // If time can be a valid Date
     let timeAsDate = new Date(time);
     if (timeAsDate.toString() !== this.INVALID.toString()) {
       return timeAsDate;
     }
 
-    // This is an extension of the Date constructor
-    // We want to parse custom strings into a Date object
-    // Ex: "9:7.68" is 9 minutes, 7 seconds, and 680 milliseconds
+    // Date constructor can't handle time,
+    // we want to parse custom strings into a Date
+    // Ex: "4:5.67" is 4m, 5s, and 670ms
 
-    // Non String then return timeAsDate. (May be 'Invalid Date')
+    // Non strings are invalid
     if (typeof time !== 'string') {
-      return timeAsDate;
+      return this.INVALID;
     }
 
-    // Now we parse the custom string
+    // Separate h,m,s,ms
     let timeArray = time.trim().split(':');
+    let seconds = timeArray.pop().split('.');
 
-    // Split the seconds and milliseconds and convert array to number array
-    timeArray = timeArray.concat(timeArray.pop().split('.')).map(Number);
+    // If seconds is len 1 then it only contains seconds
+    if (seconds.length === 1) {
+      // Add zero as ms are always index 0 after reverse
+      seconds.concat("0");
+    }
 
-    // "9.67" is 9s and 670ms
-    // "4:9.67" is 4m, 9s, and 670ms
-    // Reverse ensures ms is always index 0, etc.
-    timeArray = timeArray.reverse();
+    // Pad with trailing zeros: ".67" is 670ms not 067ms
+    seconds[1] = seconds[1].padEnd(3, "0");
+
+    // Finalize array
+    timeArray = timeArray.concat(seconds).map(Number).reverse();
 
     // Ensure baseDate is valid, if not use unix epoch
     if (baseDate.toString() === this.INVALID.toString()) {
       baseDate = this.UNIX_EPOCH;
     }
 
-    // Return the parsed time string as a Date. Can be invalid if time string
-    // didn't fit format.
+    // Return the parsed time string as a Date.
+    // Can be invalid if time string doesn't fit format.
     return new Date(baseDate.getFullYear(), baseDate.getMonth(),
         baseDate.getDate(), timeArray[3] || baseDate.getHours(),
         timeArray[2] || baseDate.getMinutes(),
