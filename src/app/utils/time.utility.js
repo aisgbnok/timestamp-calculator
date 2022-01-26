@@ -9,11 +9,17 @@ export class TimeUtility {
   }
 
   /**
-   * Analyze given time and return a valid {@link Date}.
-   * @param time String to be converted into a {@link Date}.
-   * @returns {Date} Valid {@link Date} if possible, or 'Invalid Date' {@link Date}
+   * Analyze given time and attempt to return a valid {@link Date}.
+   * @param time Valid {@link Date}, or valid string that can be converted into
+   *     a {@link Date}. This includes custom time string like "00:00:00.000".
+   * @param baseDate Used to fill in date information when time excludes date
+   *     information. If you provide a string of hours and seconds then
+   *     baseDate will fill in the month, year, etc. If baseDate is an invalid
+   *     {@link Date} then current date is used.
+   * @returns {Date} Valid {@link Date} if possible, or "Invalid Date"
+   *     {@link Date}
    */
-  static parse(time) {
+  static parse(time, baseDate = this.now()) {
     // Already valid
     if (time instanceof Date) {
       return time;
@@ -37,23 +43,25 @@ export class TimeUtility {
     // Now we parse the custom string
     let timeArray = time.trim().split(':');
 
-    // Split the seconds and milliseconds
-    timeArray = timeArray.concat(timeArray.pop().split('.'));
+    // Split the seconds and milliseconds and convert array to number array
+    timeArray = timeArray.concat(timeArray.pop().split('.')).map(Number);
 
-    // Here we convert the string array to number array
-    // We reverse the array because of how our custom time string works
     // "9.67" is 9s and 670ms
     // "4:9.67" is 4m, 9s, and 670ms
     // Reverse ensures ms is always index 0, etc.
-    timeArray = timeArray.map(Number).reverse();
+    timeArray = timeArray.reverse();
 
-    let currentTime = this.now();
-    const date = new Date(currentTime.getFullYear(), currentTime.getMonth(),
-        currentTime.getDate(), timeArray[3] || currentTime.getHours(),
-        timeArray[2] || currentTime.getMinutes(),
-        timeArray[1] || currentTime.getSeconds(), timeArray[0]);
+    // Ensure baseDate is valid, if not use current Date
+    if (baseDate.toString() === 'Invalid Date') {
+      baseDate = this.now();
+    }
 
-    return date;
+    // Return the parsed time string as a Date. Can be invalid if time string
+    // didn't fit format.
+    return new Date(baseDate.getFullYear(), baseDate.getMonth(),
+        baseDate.getDate(), timeArray[3] || baseDate.getHours(),
+        timeArray[2] || baseDate.getMinutes(),
+        timeArray[1] || baseDate.getSeconds(), timeArray[0]);
   }
 
   static difference(newTime, oldTime) {
