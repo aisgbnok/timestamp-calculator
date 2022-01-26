@@ -1,5 +1,8 @@
 export class TimeUtility {
 
+  static INVALID = new Date('Invalid Date');
+  static UNIX_EPOCH = new Date(0);
+
   /**
    * Provides the current date and time as a {@link Date}.
    * @returns {Date} Representing the current date and time.
@@ -15,11 +18,11 @@ export class TimeUtility {
    * @param baseDate Used to fill in date information when time excludes date
    *     information. If you provide a string of hours and seconds then
    *     baseDate will fill in the month, year, etc. If baseDate is an invalid
-   *     {@link Date} then current date is used.
+   *     {@link Date} then unix epoch is used.
    * @returns {Date} Valid {@link Date} if possible, or "Invalid Date"
    *     {@link Date}
    */
-  static parse(time, baseDate = this.now()) {
+  static parse(time, baseDate = this.UNIX_EPOCH) {
     // Already valid
     if (time instanceof Date) {
       return time;
@@ -27,7 +30,7 @@ export class TimeUtility {
 
     // See if time cam be a Date
     let timeAsDate = new Date(time);
-    if (timeAsDate.toString() !== 'Invalid Date') {
+    if (timeAsDate.toString() !== this.INVALID.toString()) {
       return timeAsDate;
     }
 
@@ -51,9 +54,9 @@ export class TimeUtility {
     // Reverse ensures ms is always index 0, etc.
     timeArray = timeArray.reverse();
 
-    // Ensure baseDate is valid, if not use current Date
-    if (baseDate.toString() === 'Invalid Date') {
-      baseDate = this.now();
+    // Ensure baseDate is valid, if not use unix epoch
+    if (baseDate.toString() === this.INVALID.toString()) {
+      baseDate = this.UNIX_EPOCH;
     }
 
     // Return the parsed time string as a Date. Can be invalid if time string
