@@ -67,29 +67,26 @@ export class TimeUtility {
         timeArray[1] || baseDate.getSeconds(), timeArray[0]);
   }
 
-  static difference(newTime, oldTime) {
-    // Uses current date if none was given
-    oldTime = oldTime || this.now();
+  /**
+   * Provides the difference between end and start date/time.
+   * @param end End date/time
+   * @param start Start date/time, uses unix epoch if none is given.
+   * @returns {Date} Epoch plus difference of end and start.
+   */
+  static diff(end, start = this.UNIX_EPOCH) {
+    // Parse
+    end = this.parse(end);
+    start = this.parse(start);
 
-    this.parse("Dog")
-
-    // Ensure dates are valid
-    if (!(newTime instanceof Date)) {
-      newTime = new Date(newTime);
-      if (newTime.getTime() !== newTime.getTime()) {
-        console.log(`newTime: ${newTime}`);
-        return newTime
-      }
+    // Validate
+    if (end.toString() === this.INVALID.toString()) {
+      return this.INVALID;
+    }
+    if (start.toString() === this.INVALID.toString()) {
+      return this.INVALID;
     }
 
-    if (!(oldTime instanceof Date)) {
-      oldTime = new Date(oldTime);
-      if (oldTime.getTime() !== oldTime.getTime()) {
-        console.log(`oldTime: ${oldTime}`);
-        return oldTime
-      }
-    }
-
+    return new Date(end.getTime() - start.getTime());
   }
 
   static testDate() {
