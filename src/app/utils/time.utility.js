@@ -1,41 +1,59 @@
 export class TimeUtility {
 
   /**
-   * Returns the current date and time as a  Object
-   * @returns {Date} Date.now()
+   * Provides the current date and time as a {@link Date}.
+   * @returns {Date} Representing the current date and time.
    */
   static now() {
     return new Date(Date.now());
   }
 
   /**
-   * Analyze given time and return a valid Date
-   * @param time String, Integer, or Date object
-   * @returns {Date} Valid Date object or 'Invalid Date' string
+   * Analyze given time and return a valid {@link Date}.
+   * @param time String to be converted into a {@link Date}.
+   * @returns {Date} Valid {@link Date} if possible, or 'Invalid Date' {@link Date}
    */
   static parse(time) {
-    // Valid
+    // Already valid
     if (time instanceof Date) {
       return time;
     }
 
-    // If time is an invalid Date then Date.toString will be 'Invalid Date'
-    return new Date(time);
-
-    // TODO
-    /*// Parse String
-    if (typeof time == 'string') {
-      let tempTime = new Date(time);
-
-      if (tempTime.toString() !== 'Invalid Date') {
-
-      }
+    // See if time cam be a Date
+    let timeAsDate = new Date(time);
+    if (timeAsDate.toString() !== 'Invalid Date') {
+      return timeAsDate;
     }
 
-    // Parse int
-    if (Number.isInteger(time)) {
+    // This is an extension of the Date constructor
+    // We want to parse custom strings into a Date object
+    // Ex: "9:7.68" is 9 minutes, 7 seconds, and 680 milliseconds
 
-    }*/
+    // Non String then return timeAsDate. (May be 'Invalid Date')
+    if (typeof time !== 'string') {
+      return timeAsDate;
+    }
+
+    // Now we parse the custom string
+    let timeArray = time.trim().split(':');
+
+    // Split the seconds and milliseconds
+    timeArray = timeArray.concat(timeArray.pop().split('.'));
+
+    // Here we convert the string array to number array
+    // We reverse the array because of how our custom time string works
+    // "9.67" is 9s and 670ms
+    // "4:9.67" is 4m, 9s, and 670ms
+    // Reverse ensures ms is always index 0, etc.
+    timeArray = timeArray.map(Number).reverse();
+
+    let currentTime = this.now();
+    const date = new Date(currentTime.getFullYear(), currentTime.getMonth(),
+        currentTime.getDate(), timeArray[3] || currentTime.getHours(),
+        timeArray[2] || currentTime.getMinutes(),
+        timeArray[1] || currentTime.getSeconds(), timeArray[0]);
+
+    return date;
   }
 
   static difference(newTime, oldTime) {
