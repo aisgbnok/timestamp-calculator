@@ -2,6 +2,7 @@ import {MDCTopAppBar} from '@material/top-app-bar';
 import {MDCTextField} from '@material/textfield';
 import {MDCRipple} from '@material/ripple';
 import {TimeUtility} from "./utils/time.utility";
+import {parse} from "date-fns";;
 
 export const run = () => {
   // Time Utility Works
@@ -21,7 +22,9 @@ export const run = () => {
   const baseTime = document.querySelector('#base-time');
   const addTime = document.querySelector('#add-time');
   calcButton.addEventListener('click', () => {
-    console.log(TimeUtility.toTimeString(
-        TimeUtility.add(addTime.value, baseTime.value)));
+
+
+
+    console.log(parse("09 30 20 10", "HH mm ss SSS", new Date(0)));
   });
 };
