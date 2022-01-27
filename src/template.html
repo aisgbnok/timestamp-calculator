@@ -20,11 +20,28 @@
     </section>
   </div>
 </header>
-<main class="main-wrapper mdc-top-app-bar--fixed-adjust" id="parent-wrapper">
+<main class="main-wrapper mdc-top-app-bar--fixed-adjust md3" id="parent-wrapper">
   <div class="main-wrapper main-wrapper--align-content main-wrapper__content">
     <!-- Title Wrapper -->
     <div class="main-wrapper main-wrapper--align-content" id="title-wrapper">
-      <h2 class="mdc-typography--headline2 title"></h2>
+      <div class="mdc-card mdc-card--filled" id="output-card">
+
+          <div class="mdc-card__text-section">
+            <h5 class="mdc-card__headline">Time Addition</h5>
+            <h6 class="mdc-card__subhead">Adds Time</h6>
+          </div>
+          <div class="mdc-card__text-section">
+            <p class="mdc-card__supporting-text">Output</p>
+          </div>
+          <div class="mdc-card__actions">
+            <button
+                class="mdc-button mdc-button--unelevated mdc-card__action mdc-card__action--button"
+                id="calc-button">
+              <div class="mdc-button__ripple"></div>
+              <span class="mdc-button__label">Calculate</span>
+            </button>
+        </div>
+      </div>
     </div>
     <!-- Calculation -->
     <div class="main-wrapper" id="calculation-wrapper">
@@ -50,11 +67,6 @@
         <input aria-labelledby="add-time-label" class="mdc-text-field__input"
                id="add-time" type="text">
       </label>
-      <button class="mdc-button mdc-button--unelevated"
-              id="calc-button">
-        <div class="mdc-button__ripple"></div>
-        <span class="mdc-button__label">Calculate</span>
-      </button>
     </div>
   </div>
 </main>

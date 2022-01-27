@@ -1,0 +1,71 @@
+@use "@material/button";
+@use "@material/button/styles";
+@use "dark.theme";
+@use "@material/card";
+@use "@material/elevation";
+@use "@material/typography";
+
+
+.md3 {
+
+  .mdc-button {
+    @include button.height(40px);
+    @include button.shape-radius(100%);
+    text-transform: none;
+
+    &:not(.mdc-button--icon-leading), &:not(.mdc-button--icon-trailing) {
+      @include button.horizontal-padding(24px);
+    }
+
+    .tonal {
+      @include button.filled-accessible(dark.$secondary-container);
+      @include button.ink-color(dark.$on-secondary-container);
+    }
+  }
+
+  .mdc-card {
+    text-align: start;
+
+    &__text-section {
+      padding-right: 16px;
+      padding-left: 16px;
+
+      * {
+        margin: 0;
+      }
+
+      &:first-child {
+        padding-top: 16px;
+      }
+
+      &:not(:first-of-type) {
+        padding-top: 18px;
+      }
+    }
+
+    &__actions {
+      padding: 16px;
+      justify-content: flex-end;
+    }
+
+    &__headline {
+      @include typography.typography(headline5);
+    }
+
+    &__subhead {
+      @include typography.typography(subtitle1);
+      margin: 4px 0 0;
+    }
+
+    &__supporting-text {
+      @include typography.typography(body2);
+    }
+
+    &--filled {
+      @include card.fill-color(dark.$surface-variant);
+      @include elevation.elevation(0);
+
+    }
+
+  }
+}

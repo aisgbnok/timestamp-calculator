@@ -1,15 +1,14 @@
+@use "dark.theme";
+
 @use "@material/theme" with (
-  $primary: #e3c600,
-  $secondary: #a8d0b5,
-  $background: #1d1b16,
-  $surface: #1d1b16,
-  $on-primary: #393000,
-  $on-secondary: #133724,
-  $on-surface: #e7e2d9,
+  $primary: dark.$primary,
+  $secondary: dark.$secondary,
+  $background: dark.$background,
+  $surface: dark.$surface,
+  $on-primary: dark.$on-primary,
+  $on-secondary: dark.$on-secondary,
+  $on-surface: dark.$on-surface,
 );
-$secondary-container: #4d472a;
-$on-secondary-container: #ede3bc;
-$outline: #969181;
 
 @use "@material/typography" with (
   $font-family: unquote("JetBrains Mono, Arial, Helvetica, sans-serif")
@@ -30,10 +29,13 @@ $outline: #969181;
 @use "@material/line-ripple/mdc-line-ripple";
 @use "@material/notched-outline/mdc-notched-outline";
 @use "@material/textfield";
+@use "@material/card";
+@use "md3";
 
 @include theme.core-styles;
 @include typography.core-styles;
 @include textfield.core-styles;
+@include card.core-styles;
 
 body {
   height: 100%;
@@ -46,7 +48,6 @@ body {
 // Top App Bar
 .mdc-top-app-bar {
   @include top-app-bar.fill-color-accessible(background);
-  border-bottom: 1px solid $outline;
 }
 
 // Main Wrapper
@@ -80,8 +81,8 @@ body {
 // Calculation Wrapper
 #calculation-wrapper {
   flex-direction: column;
-  margin-top: 96px;
-  align-items: flex-end;
+  margin-top: 48px;
+  align-items: center;
 
   .mdc-text-field:not(:last-of-type) {
     margin-bottom: 24px;
@@ -89,21 +90,15 @@ body {
 }
 
 #calc-button {
-  margin-top: 36px;
-  width: fit-content;
+  //width: fit-content;
 }
 
-.mdc-button {
-  @include button.height(40px);
-  @include button.shape-radius(100%);
-  text-transform: none;
-}
+#output-card {
+  width: 38vw;
+  min-width: 288px;
+  max-width: 384px;
 
-.mdc-button:not(.mdc-button--icon-leading), .mdc-button:not(.mdc-button--icon-trailing) {
-  @include button.horizontal-padding(24px);
-}
-
-.mdc-button--filled-tonal {
-  @include button.filled-accessible($secondary-container);
-  @include button.ink-color($on-secondary-container);
+  .mdc-card__headline {
+    width: 96%;
+  }
 }
