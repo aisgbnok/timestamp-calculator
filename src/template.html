@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <title><%= htmlWebpackPlugin.options.title %></title>
   <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
   <link
       href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
       rel="stylesheet">
@@ -14,7 +14,8 @@
 <body>
 <header class="mdc-top-app-bar mdc-top-app-bar--fixed">
   <div class="mdc-top-app-bar__row">
-    <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+    <section
+        class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
       <span class="mdc-top-app-bar__title"><%= htmlWebpackPlugin.options.title %></span>
     </section>
   </div>
@@ -23,11 +24,34 @@
   <div class="main-wrapper main-wrapper--align-content main-wrapper__content">
     <!-- Title Wrapper -->
     <div class="main-wrapper main-wrapper--align-content" id="title-wrapper">
-      <h2 class="mdc-typography--headline2 title">Start adding Time</h2>
+      <h2 class="mdc-typography--headline2 title"></h2>
     </div>
     <!-- Calculation -->
     <div class="main-wrapper" id="calculation-wrapper">
-      <button class="mdc-button mdc-button--unelevated mdc-button--filled" id="button">
+      <label class="mdc-text-field mdc-text-field--outlined" id="base-time-text-field">
+        <span class="mdc-notched-outline">
+          <span class="mdc-notched-outline__leading"></span>
+          <span class="mdc-notched-outline__notch">
+            <span class="mdc-floating-label" id="base-time-label">Base Time</span>
+          </span>
+          <span class="mdc-notched-outline__trailing"></span>
+        </span>
+        <input aria-labelledby="base-time-label" class="mdc-text-field__input"
+               id="base-time" type="text">
+      </label>
+      <label class="mdc-text-field mdc-text-field--outlined" id="add-time-text-field">
+        <span class="mdc-notched-outline">
+          <span class="mdc-notched-outline__leading"></span>
+          <span class="mdc-notched-outline__notch">
+            <span class="mdc-floating-label" id="add-time-label">Add Time</span>
+          </span>
+          <span class="mdc-notched-outline__trailing"></span>
+        </span>
+        <input aria-labelledby="add-time-label" class="mdc-text-field__input"
+               id="add-time" type="text">
+      </label>
+      <button class="mdc-button mdc-button--unelevated"
+              id="calc-button">
         <div class="mdc-button__ripple"></div>
         <span class="mdc-button__label">Calculate</span>
       </button>
