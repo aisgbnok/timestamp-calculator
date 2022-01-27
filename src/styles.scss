@@ -26,9 +26,14 @@ $outline: #969181;
 @use "@material/top-app-bar/mdc-top-app-bar";
 @use "@material/button";
 @use "@material/button/styles";
+@use "@material/floating-label/mdc-floating-label";
+@use "@material/line-ripple/mdc-line-ripple";
+@use "@material/notched-outline/mdc-notched-outline";
+@use "@material/textfield";
 
 @include theme.core-styles;
 @include typography.core-styles;
+@include textfield.core-styles;
 
 body {
   height: 100%;
@@ -63,6 +68,29 @@ body {
   width: 100%;
   max-width: 1536px;
   padding-top: 48px;
+}
+
+// Title Wrapper
+#title-wrapper {
+  .title {
+    margin: 0;
+  }
+}
+
+// Calculation Wrapper
+#calculation-wrapper {
+  flex-direction: column;
+  margin-top: 96px;
+  align-items: flex-end;
+
+  .mdc-text-field:not(:last-of-type) {
+    margin-bottom: 24px;
+  }
+}
+
+#calc-button {
+  margin-top: 36px;
+  width: fit-content;
 }
 
 .mdc-button {
