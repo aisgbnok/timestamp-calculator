@@ -2,12 +2,6 @@
   "name": "timestamp-calculator",
   "version": "1.0.0",
   "description": "Simple timestamp calculator website",
-  "keywords": [
-    "time",
-    "timestamp",
-    "calculator",
-    "website"
-  ],
   "author": "Anthony Swierkosz",
   "homepage": "https://github.com/aisgbnok/timestamp-calculator#readme",
   "bugs": {
@@ -17,29 +11,28 @@
     "type": "git",
     "url": "https://github.com/aisgbnok/timestamp-calculator.git"
   },
-  "license": "ISC",
+  "license": "UNLICENSED",
   "private": true,
-  "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config webpack.dev.js",
     "start open": "webpack-dev-server --config webpack.dev.js --open",
     "start host": "webpack-dev-server --config webpack.dev.js --host 0.0.0.0",
     "build": "webpack --config webpack.prod.js"
   },
-  "devDependencies": {
-    "css-loader": "^6.5.1",
-    "html-webpack-plugin": "^5.5.0",
-    "mini-css-extract-plugin": "^2.5.3",
-    "sass": "^1.49.0",
-    "sass-loader": "^12.4.0",
-    "style-loader": "^3.3.1",
-    "webpack": "^5.67.0",
-    "webpack-cli": "^4.9.2",
-    "webpack-dev-server": "^4.7.3",
-    "webpack-merge": "^5.8.0"
-  },
   "dependencies": {
     "date-fns": "^2.28.0",
     "material-components-web": "^13.0.0"
+  },
+  "devDependencies": {
+    "css-loader": "^6.6.0",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.5.3",
+    "sass": "^1.49.7",
+    "sass-loader": "^12.4.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.68.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4",
+    "webpack-merge": "^5.8.0"
   }
 }
