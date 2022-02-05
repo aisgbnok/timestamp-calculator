@@ -6,18 +6,20 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = merge(common, {
   mode: 'production',
   output: {
-    path: path.resolve(__dirname, './dist'),
-    filename: '[name].[contenthash].bundle.js',
+    filename: '[name].[contenthash].js',
+    path: path.resolve(__dirname, 'dist'),
+    clean: true
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: '[name].[contenthash].css'
-    })
+      filename: "[name].css",
+      chunkFilename: "[id].css",
+    }),
   ],
   module: {
     rules: [
       {
-        test: /\.scss$/i,
+        test: /\.s[ac]ss$/i,
         use: [
           // Uses MiniCssExtractPlugin Loader
           MiniCssExtractPlugin.loader,
@@ -28,5 +30,18 @@ module.exports = merge(common, {
         ],
       },
     ],
+  },
+  optimization: {
+    moduleIds: 'deterministic',
+    runtimeChunk: 'single',
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+      },
+    },
   },
 });

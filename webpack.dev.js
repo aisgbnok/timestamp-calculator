@@ -12,7 +12,7 @@ module.exports = merge(common, {
   module: {
     rules: [
       {
-        test: /\.scss$/,
+        test: /\.s[ac]ss$/i,
         use: [
           // Creates `style` nodes from JS strings
           'style-loader',
@@ -24,4 +24,7 @@ module.exports = merge(common, {
       },
     ],
   },
+  devServer: {
+    static: './dist',
+  }
 });
