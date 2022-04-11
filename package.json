@@ -21,19 +21,19 @@
   },
   "dependencies": {
     "date-fns": "^2.28.0",
-    "firebase": "^9.6.6",
+    "firebase": "^9.6.10",
     "material-components-web": "^13.0.0"
   },
   "devDependencies": {
-    "css-loader": "^6.6.0",
+    "css-loader": "^6.7.1",
     "html-webpack-plugin": "^5.5.0",
-    "mini-css-extract-plugin": "^2.5.3",
-    "sass": "^1.49.7",
+    "mini-css-extract-plugin": "^2.6.0",
+    "sass": "^1.50.0",
     "sass-loader": "^12.6.0",
     "style-loader": "^3.3.1",
-    "webpack": "^5.69.0",
+    "webpack": "^5.72.0",
     "webpack-cli": "^4.9.2",
-    "webpack-dev-server": "^4.7.4",
+    "webpack-dev-server": "^4.8.1",
     "webpack-merge": "^5.8.0"
   }
 }
