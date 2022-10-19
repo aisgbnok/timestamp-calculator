@@ -1,30 +1,16 @@
-const path = require('path');
-const common = require('./webpack.common');
-const {merge} = require('webpack-merge');
+import type { Configuration } from 'webpack';
+import type { Configuration as DevServerConfiguration } from 'webpack-dev-server';
+import { merge } from 'webpack-merge';
+import { common } from './webpack.common';
 
-module.exports = merge(common, {
-  mode: 'development',
-  devtool: 'eval-source-map',
-  output: {
-    path: path.resolve(__dirname, './dist'),
-    filename: 'index_bundle.js',
-  },
-  module: {
-    rules: [
-      {
-        test: /\.s[ac]ss$/i,
-        use: [
-          // Creates `style` nodes from JS strings
-          'style-loader',
-          // Translates CSS into CommonJS
-          'css-loader',
-          // Compiles Sass to CSS
-          'sass-loader',
-        ],
-      },
-    ],
-  },
-  devServer: {
-    static: './dist',
-  }
-});
+const devServer: DevServerConfiguration = {
+  static: './dist',
+};
+
+module.exports = (env: any, args: any) => {
+  return merge<Configuration>(common(env, args), <Configuration>{
+    mode: 'development',
+    devtool: 'eval-cheap-module-source-map',
+    devServer,
+  });
+}
