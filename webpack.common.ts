@@ -10,7 +10,7 @@ export function common(env: any, argv: any) {
   return <Configuration>{
     context: path.resolve(__dirname, 'src'),
     entry: {
-      index: './index.js'
+      index: './index.ts'
     },
     plugins: [
       new MiniCssExtractPlugin({
