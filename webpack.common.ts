@@ -42,7 +42,14 @@ export function common(env: any, argv: any) {
             // Translates CSS into CommonJS
             'css-loader',
             // Compiles Sass to CSS
-            'sass-loader',
+            {
+              loader: 'sass-loader',
+              options: {
+                sassOptions: {
+                  silenceDeprecations: ['color-functions', 'mixed-decls', `global-builtin`]
+                }
+              }
+            }
           ],
         },
       ],

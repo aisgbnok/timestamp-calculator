@@ -4,12 +4,10 @@
   <meta charset="UTF-8">
   <title><%= htmlWebpackPlugin.options.title %></title>
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com" rel="preconnect">
-  <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
-  <link
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
-      rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..800&display=swap" rel="stylesheet">
+<!--  <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined" rel="stylesheet">-->
 </head>
 <body>
 <header class="mdc-top-app-bar mdc-top-app-bar--fixed">
@@ -34,10 +32,9 @@
             <p class="mdc-card__supporting-text">Output</p>
           </div>
           <div class="mdc-card__actions">
-            <button
-                class="mdc-button mdc-button--unelevated mdc-card__action mdc-card__action--button"
-                id="calc-button">
-              <div class="mdc-button__ripple"></div>
+            <button class="mdc-button mdc-button--unelevated mdc-card__action mdc-card__action--button" id="calc-button">
+              <span class="mdc-button__ripple"></span>
+              <span class="mdc-button__focus-ring"></span>
               <span class="mdc-button__label">Calculate</span>
             </button>
         </div>

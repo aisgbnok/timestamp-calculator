@@ -1,3 +1,4 @@
+@use "sass:string";
 @use "dark.theme";
 
 @use "@material/theme" with (
@@ -11,7 +12,7 @@
 );
 
 @use "@material/typography" with (
-  $font-family: unquote("JetBrains Mono, Arial, Helvetica, sans-serif")
+  $font-family: string.unquote("JetBrains Mono, Arial, Helvetica, sans-serif")
 );
 
 @use "@material/shape" with (
